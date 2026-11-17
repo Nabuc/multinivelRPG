@@ -30,7 +30,11 @@ SELECT i.nombre, i.tipo, i.valor, inv.cantidad
 -- combate apunta a personaje con tres llaves foráneas y sin CASCADE.
 -- >>> SALA B.3 · Llaves foráneas: el caso Thorgar
 -- Arma este bloque en el Edificio de la Persistencia (pestaña MariaDB · SQL),
--- pulsa «Copiar bloque» y pégalo entre estas dos marcas.
+SELECT COUNT(*) AS combates_de_thorgar
+  FROM combate
+ WHERE id_atacante = 1
+    OR id_defensor = 1
+    OR id_ganador = 1;
 -- <<< FIN SALA B.3
 -- Esta línea falla con el error 1451 (llave foránea en uso):
 -- DELETE FROM personaje WHERE id_personaje = 1;
