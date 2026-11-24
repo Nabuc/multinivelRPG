@@ -87,6 +87,25 @@ def crear_personaje(clase, nombre, nivel=1, vida=100, ataque=10, oro=Decimal("0"
     # >>> SALA 1.3 · La fábrica de personajes
     # Arma este bloque en el Edificio de la Persistencia (pestaña Python),
     # pulsa «Copiar bloque» y pégalo entre estas dos marcas.
+    # Archivo: rpg_manager_multinivel_flask/modelo/personaje.py (fragmento)
+
+def crear_personaje(clase, nombre, nivel=1, vida=100, ataque=10, oro=Decimal("0"), id=None,
+                    mana=None, precision=None):
+    """Reconstruye la subclase correcta a partir del texto de la clase.
+
+    La usan los tres repositorios: una fila de MariaDB, un documento de MongoDB
+    o un formulario dicen "Mago", y aquí se decide qué objeto crear.
+    """
+    if clase == "Guerrero":
+        return Guerrero(nombre, nivel, vida, ataque, oro, id)
+    if clase == "Mago":
+        return Mago(nombre, nivel, vida, ataque, oro, id,
+                    mana if mana is not None else MANA_POR_DEFECTO)
+    if clase == "Arquero":
+        return Arquero(nombre, nivel, vida, ataque, oro, id,
+                       precision if precision is not None else PRECISION_POR_DEFECTO)
+    raise ValueError(f"Clase desconocida: {clase}")
+
     # <<< FIN SALA 1.3
 
 
