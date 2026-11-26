@@ -17,7 +17,7 @@ class Personaje:
 
     # >>> SALA 1.1 · Personaje: la clase base
     # Arma este bloque en el Edificio de la Persistencia (pestaña Python),
-     def __init__(self, nombre, nivel=1, vida=100, ataque=10, oro=Decimal("0"), id=None):
+    def __init__(self, nombre, nivel=1, vida=100, ataque=10, oro=Decimal("0"), id=None):
         self.id = id
         self.nombre = nombre
         self.nivel = nivel
@@ -130,9 +130,3 @@ class Item:
         return f"Item({self.nombre!r} x{self.cantidad})"
 
 # <<< FIN SALA 1.4
-
-    def a_dict(self):
-        return {"nombre": self.nombre, "tipo": self.tipo, "valor": self.valor, "cantidad": self.cantidad}
-
-    def __repr__(self):
-        return f"Item({self.nombre!r} x{self.cantidad})"

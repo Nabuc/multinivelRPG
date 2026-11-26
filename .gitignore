@@ -12,3 +12,11 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# IDE
+.idea/
+
+# Memoria / configuración local de Claude Code
+.claude/
+CLAUDE.md
+CLAUDE.local.md

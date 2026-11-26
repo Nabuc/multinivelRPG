@@ -12,7 +12,7 @@ class PersonajeRepository(ABC):
     # >>> SALA 2.1 · El contrato
     # Arma este bloque en el Edificio de la Persistencia (pestaña Python),
     # pulsa «Copiar bloque» y pégalo entre estas dos marcas.
-        @abstractmethod
+    @abstractmethod
     def guardar(self, personaje):
         """Guarda un personaje nuevo, le asigna su id y lo devuelve."""
 

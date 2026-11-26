@@ -5,7 +5,6 @@ Sirve para probar sin base de datos. Al reiniciar el servidor, todo se pierde.
 from modelo.personaje import Item
 from repositorio.excepciones import DatoDuplicadoException
 from repositorio.personaje_repository import PersonajeRepository
-from rpg_manager_multinivel_flask.modelo import personaje
 
 # Catálogo fijo: los mismos 9 ítems de la tabla item de MariaDB
 CATALOGO = [
@@ -33,7 +32,7 @@ class RepositorioMemoria(PersonajeRepository):
         # >>> SALA 2.2 · RepositorioMemoria
         # Arma este bloque en el Edificio de la Persistencia (pestaña Python),
         # pulsa «Copiar bloque» y pégalo entre estas dos marcas.
-            for existente in self._datos.values():
+        for existente in self._datos.values():
             if existente.nombre == personaje.nombre:
                 raise DatoDuplicadoException(personaje.nombre)
         personaje.id = self._siguiente_id

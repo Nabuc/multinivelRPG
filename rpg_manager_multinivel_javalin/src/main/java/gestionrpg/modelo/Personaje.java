@@ -25,10 +25,6 @@ public abstract class Personaje {
         this.vida = vida;
         this.ataque = ataque;
         this.oro = oro;
-    }
-
-    /** "Guerrero", "Mago" o "Arquero": lo define cada subclase. */
-    public abstract String getClase();
     // <<< FIN SALA 1.1
     }
 

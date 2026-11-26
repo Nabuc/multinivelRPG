@@ -19,16 +19,6 @@ public class Item {
         this.tipo = tipo;
         this.valor = valor;
         this.cantidad = cantidad;
-    }
-
-    public String getNombre() { return nombre; }
-    public String getTipo() { return tipo; }
-    public int getValor() { return valor; }
-    public int getCantidad() { return cantidad; }
-
-    @Override
-    public String toString() { return "Item(" + nombre + " x" + cantidad + ")"; }
-}
 
 // <<< FIN SALA 1.4
     }
