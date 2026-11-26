@@ -138,6 +138,29 @@ public class RepositorioMongo implements PersonajeRepository {
         // >>> SALA 2.6 · MongoDB: guardar con contador
         // Arma este bloque en el Edificio de la Persistencia (pestaña Java),
         // pulsa «Copiar bloque» y pégalo entre estas dos marcas.
+// Archivo: rpg_manager_multinivel_javalin/src/main/java/gestionrpg/repositorio/RepositorioMongo.java (fragmento)
+
+        @Override
+        public Personaje guardar(Personaje p) {
+            if (personajes.find(eq("nombre", p.getNombre())).first() != null) {
+                throw new DatoDuplicadoException(p.getNombre(), null);
+            }
+            Document documento = camposDe(p)
+                    .append("inventario", new ArrayList<Document>())
+                    .append("misiones", new ArrayList<Document>())
+                    .append("id_personaje", siguienteId());
+            try {
+                personajes.insertOne(documento);
+            } catch (MongoWriteException e) {
+                if (esDuplicado(e)) {
+                    throw new DatoDuplicadoException(p.getNombre(), e);
+                }
+                throw e;
+            }
+            p.setId(documento.getInteger("id_personaje"));
+            return p;
+        }
+
         // <<< FIN SALA 2.6
         return p;
     }
