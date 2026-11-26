@@ -97,6 +97,17 @@ class PersonajeService:
             return self._repositorio.guardar(personaje)
         except DatoDuplicadoException:
             raise ValidacionException(f"Ya existe un personaje llamado {nombre}")
+        self.obtener(id)
+        cantidad = self._entero(cantidad, "cantidad")
+        if not 1 <= cantidad <= 99:
+            raise ValidacionException("La cantidad debe estar entre 1 y 99")
+        nombres = []
+        for item in self._repositorio.listar_catalogo():
+            nombres.append(item.nombre)
+        if nombre_item not in nombres:
+            raise ValidacionException(f"No existe el ítem {nombre_item}")
+        self._repositorio.agregar_item(id, nombre_item, cantidad)
+        return self._repositorio.listar_inventario(id)
 
         # <<< FIN SALA 3.3
 
